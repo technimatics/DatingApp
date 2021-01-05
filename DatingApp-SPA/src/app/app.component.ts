@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FirstAngularApp';
+
+  loggedIn(){
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
 }
