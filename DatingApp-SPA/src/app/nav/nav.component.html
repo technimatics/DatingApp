@@ -1,17 +1,17 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark " *ngIf="loggedIn()">
-  <div class="container-fluid">
-    <img
+<nav class="navbar navbar-expand-md navbar-dark bg-primary " *ngIf="loggedIn()">
+  <div  class="container-fluid">
+    <img class="mr-1"
     width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+    alt="Superia Logo"
+    src="favicon.ico"
   />
-    <a class="navbar-brand" href="#">FristAngularAPP</a>
+    <a class="navbar-brand" href="#">Superia</a>
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
 
     <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" aria-current="page" href="#">Feed</a>
         </li>
@@ -23,16 +23,18 @@
         </li>
       </ul>
 
-      <div *ngIf="loggedIn()" class="dropdown">
-        <a class="dropdown-toggle text-light" >
-          Welcome User
+      <div  *ngIf="loggedIn()" class="dropdown ml-2" Dropdown>
+        <a  class="dropdown-toggle text-light" DropdownToggle>
+          Howdy {{authService.decodedToken?.unique_name | titlecase}}
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+
+        <div class="dropdown-menu mt-2" *dropdownMenu>
+          <a class="dropdown-item" href="#"><i class="fab fa-user"></i>Edit Profile</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+          <a class="dropdown-item" (click)="logout()"><i class="fab fa-sign-out"></i>Log Out</a>
         </div>
       </div>
+
 
       <!-- <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
         <input class="form-control mr-sm-2" type="text" placeholder="Username" name="username" aria-label="Username" required [(ngModel)]="model.username">

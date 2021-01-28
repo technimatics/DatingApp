@@ -50,11 +50,11 @@ namespace DatingApp.API.Data
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt); //for generating hash password
 
-            user.PasswordHash = passwordHash; //adding hash password in userclass
-            user.PasswordSalt = passwordSalt; //adding salt password in userclass
+            user.PasswordHash = passwordHash;    //adding hash password in userclass
+            user.PasswordSalt = passwordSalt;    //adding salt password in userclass
 
             await _context.Users.AddAsync(user); //adding userprofile in database
-            await _context.SaveChangesAsync(); //saving changings
+            await _context.SaveChangesAsync();   //saving changings
 
             return user;
         }

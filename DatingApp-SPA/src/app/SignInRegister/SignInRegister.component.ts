@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 declare var $:any;
 @Component({
@@ -11,7 +12,7 @@ export class SignInRegisterComponent implements OnInit {
   model: any ={};
   rmodel: any ={};
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -30,9 +31,9 @@ export class SignInRegisterComponent implements OnInit {
   }
   login(){
     this.authService.login(this.model).subscribe(next=>{
-      console.log('Logged in successfully');
+      this.alertify.success('Logged in successfully');
     }, error =>{
-      console.log('Logging Failed')
+      this.alertify.error(error)
     })
   }
   loggedIn(){
@@ -41,11 +42,11 @@ export class SignInRegisterComponent implements OnInit {
   }
   logout(){
     localStorage.removeItem('token');
-    console.log('logged out');
+   this.alertify.message('logged out');
   }
   register(){
-    this.authService.register(this.rmodel).subscribe(()=>{ console.log('Registration successful');}, error =>{
-      console.log(error)
+    this.authService.register(this.rmodel).subscribe(()=>{ this.alertify.success('Registration successful');}, error =>{
+      this.alertify.error(error)
     });
   }
 }
