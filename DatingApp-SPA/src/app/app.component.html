@@ -10,15 +10,14 @@
 
 <!-- Toolbar -->
 <app-nav *ngIf="loggedIn()"></app-nav>
+<router-outlet *ngIf="loggedIn()"></router-outlet>
+
 
 <div class="content" role="main">
+    <app-SignInRegister *ngIf="!loggedIn()"></app-SignInRegister>
+</div>
 
-<app-SignInRegister *ngIf="!loggedIn()"></app-SignInRegister>
-  <!--Values Component-->
-<div>
-  <app-value></app-value>
-</div>
-</div>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->

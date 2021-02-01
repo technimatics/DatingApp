@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,22 +13,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class NavComponent implements OnInit {
   model: any ={};
 
-  constructor(public authService: AuthService, private alertify:AlertifyService) { }
+  constructor(public authService: AuthService, private alertify:AlertifyService, private router:Router) { }
 
   ngOnInit() {
   }
-  login(){
-    this.authService.login(this.model).subscribe(next=>{
-     this.alertify.success('Logged in successfully');
-    }, error =>{
-      this.alertify.error('Logging Failed')
-    })
-  }
+  // login(){
+  //   this.authService.login(this.model).subscribe(next=>{
+  //    this.alertify.success('Logged in successfully');
+     
+  //   }, error =>{
+  //     this.alertify.error('Logging Failed')
+  //   },()=>{
+  //   });
+  // }
   loggedIn(){
    return this.authService.loggedIn();
   }
   logout(){
     localStorage.removeItem('token');
     this.alertify.message('logged out');
+    this.router.navigate(['/hello']);
   }
 }

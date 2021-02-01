@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 declare var $:any;
@@ -12,7 +13,11 @@ export class SignInRegisterComponent implements OnInit {
   model: any ={};
   rmodel: any ={};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService, private router:Router) {
+    if (this.loggedIn()) {
+      this.router.navigate(['/station']);
+    }
+   }
 
   ngOnInit() {
     const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -34,6 +39,8 @@ export class SignInRegisterComponent implements OnInit {
       this.alertify.success('Logged in successfully');
     }, error =>{
       this.alertify.error(error)
+    }, ()=>{
+      this.router.navigate(['/station']);
     })
   }
   loggedIn(){
